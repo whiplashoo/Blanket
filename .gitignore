@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+
+# Xcode user data
+xcuserdata/
+*.xcuserstate
+
+# Build products and caches
+build/
+DerivedData/
+.build/
+
+# Swift Package Manager
+.swiftpm/
+Package.resolved
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Fastlane outputs
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+# Local environment / secrets
+.env
+.env.*
+*.key
+*.p12
+*.mobileprovision
+
+# IDE and tooling
+.idea/
+.vscode/
+
+buildserver.json
