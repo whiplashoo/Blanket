@@ -22,19 +22,19 @@ struct ContentView: View {
         .overlay(
           RadialGradient(
             colors: [
-              Color(red: 0.27, green: 0.32, blue: 0.44).opacity(player.isPlaying ? 0.30 : 0.12),
-              Color(red: 0.12, green: 0.15, blue: 0.23).opacity(player.isPlaying ? 0.18 : 0.06),
+              Color(red: 0.27, green: 0.32, blue: 0.44).opacity(player.isPlaying ? 0.24 : 0.08),
+              Color(red: 0.12, green: 0.15, blue: 0.23).opacity(player.isPlaying ? 0.13 : 0.04),
               .clear
             ],
             center: .center,
             startRadius: 30,
             endRadius: 420
           )
-          .scaleEffect(isBreathing ? 1.10 : 0.92)
-          .opacity(isBreathing ? 1.0 : 0.78)
+          .scaleEffect(isBreathing ? (player.isPlaying ? 1.06 : 1.01) : 0.96)
+          .opacity(isBreathing ? 1.0 : 0.90)
           .animation(
-            .easeInOut(duration: player.isPlaying ? 4.8 : 7.2).repeatForever(autoreverses: true),
-            value: isBreathing
+            .easeInOut(duration: player.isPlaying ? 5.4 : 10.0).repeatForever(autoreverses: true),
+            value: player.isPlaying
           )
         )
         .ignoresSafeArea()
@@ -86,9 +86,9 @@ struct ContentView: View {
           }
         }
         .frame(width: 232, height: 232)
-        .scaleEffect((player.isPlaying ? 0.985 : 1.0) * (tapDepth ? 0.95 : 1.0))
+        .scaleEffect((player.isPlaying ? 0.99 : 1.0) * (tapDepth ? 0.965 : 1.0))
         .animation(.spring(response: 0.45, dampingFraction: 0.78), value: player.isPlaying)
-        .animation(.spring(response: 0.20, dampingFraction: 0.62), value: tapDepth)
+        .animation(.spring(response: 0.22, dampingFraction: 0.70), value: tapDepth)
       }
       .buttonStyle(.plain)
       .accessibilityLabel(player.isPlaying ? "Pause" : "Play")
@@ -103,12 +103,12 @@ struct ContentView: View {
     let style: UIImpactFeedbackGenerator.FeedbackStyle = player.isPlaying ? .rigid : .soft
     let generator = UIImpactFeedbackGenerator(style: style)
     generator.prepare()
-    generator.impactOccurred(intensity: 0.9)
+    generator.impactOccurred(intensity: player.isPlaying ? 0.50 : 0.72)
   }
 
   private func tapDepthAnimation() {
     tapDepth = true
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.11) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
       tapDepth = false
     }
   }
@@ -126,11 +126,11 @@ private struct SoftOuterShadow: ViewModifier {
 
   func body(content: Content) -> some View {
     content
-      .shadow(color: isPressed ? .clear : darkShadow, radius: 18, x: 14, y: 14)
-      .shadow(color: isPressed ? .clear : lightShadow, radius: 14, x: -10, y: -10)
+      .shadow(color: isPressed ? .clear : darkShadow, radius: 16, x: 12, y: 12)
+      .shadow(color: isPressed ? .clear : lightShadow.opacity(0.88), radius: 12, x: -8, y: -8)
       .overlay(
         RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-          .stroke(Color.white.opacity(isPressed ? 0.03 : 0.08), lineWidth: 1)
+          .stroke(Color.white.opacity(isPressed ? 0.03 : 0.06), lineWidth: 1)
       )
   }
 }
