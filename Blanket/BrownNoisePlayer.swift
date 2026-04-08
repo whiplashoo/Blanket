@@ -9,6 +9,8 @@ final class BrownNoisePlayer: ObservableObject {
   init() {
     configureAudioSession()
     configureSamplePlayer()
+    registerForAudioSessionNotifications()
+    logRuntimeAudioConfiguration()
   }
 
   func togglePlayback() {
@@ -42,6 +44,32 @@ final class BrownNoisePlayer: ObservableObject {
     }
   }
 
+  private func registerForAudioSessionNotifications() {
+    let center = NotificationCenter.default
+
+    center.addObserver(
+      forName: AVAudioSession.interruptionNotification,
+      object: AVAudioSession.sharedInstance(),
+      queue: .main
+    ) { [weak self] notification in
+      guard let self else { return }
+      guard
+        let userInfo = notification.userInfo,
+        let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+        let type = AVAudioSession.InterruptionType(rawValue: typeValue)
+      else { return }
+
+      if type == .ended, self.isPlaying {
+        do {
+          try AVAudioSession.sharedInstance().setActive(true)
+          self.samplePlayer?.play()
+        } catch {
+          print("Failed to reactivate audio session: \(error.localizedDescription)")
+        }
+      }
+    }
+  }
+
   private func configureSamplePlayer() {
     guard let resourceURL = Bundle.main.url(forResource: "noise", withExtension: "mp3") else {
       print("noise.mp3 not found in app bundle")
@@ -58,5 +86,12 @@ final class BrownNoisePlayer: ObservableObject {
     } catch {
       print("Failed to load noise.mp3 sample: \(error.localizedDescription)")
     }
+  }
+
+  private func logRuntimeAudioConfiguration() {
+    let modes = Bundle.main.object(forInfoDictionaryKey: "UIBackgroundModes") as? [String] ?? []
+    let session = AVAudioSession.sharedInstance()
+    print("UIBackgroundModes: \(modes)")
+    print("Audio session category: \(session.category.rawValue), mode: \(session.mode.rawValue)")
   }
 }
