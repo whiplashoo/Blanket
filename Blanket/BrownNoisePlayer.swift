@@ -1,5 +1,6 @@
 import AVFoundation
 import Combine
+import MediaPlayer
 
 final class BrownNoisePlayer: ObservableObject {
   @Published private(set) var isPlaying = false
@@ -10,28 +11,31 @@ final class BrownNoisePlayer: ObservableObject {
     configureAudioSession()
     configureSamplePlayer()
     registerForAudioSessionNotifications()
+    configureRemoteCommandCenter()
+    updateNowPlayingInfo()
     logRuntimeAudioConfiguration()
   }
 
   func togglePlayback() {
-    isPlaying ? stop() : start()
+    isPlaying ? pause() : play()
   }
 
-  private func start() {
+  private func play() {
     do {
       try AVAudioSession.sharedInstance().setActive(true)
       samplePlayer?.play()
       isPlaying = samplePlayer?.isPlaying ?? false
+      updateNowPlayingInfo()
     } catch {
       isPlaying = false
       print("Failed to start sample playback: \(error.localizedDescription)")
     }
   }
 
-  private func stop() {
+  private func pause() {
     samplePlayer?.pause()
-    samplePlayer?.currentTime = 0
     isPlaying = false
+    updateNowPlayingInfo()
   }
 
   private func configureAudioSession() {
@@ -63,6 +67,7 @@ final class BrownNoisePlayer: ObservableObject {
         do {
           try AVAudioSession.sharedInstance().setActive(true)
           self.samplePlayer?.play()
+          self.updateNowPlayingInfo()
         } catch {
           print("Failed to reactivate audio session: \(error.localizedDescription)")
         }
@@ -93,5 +98,45 @@ final class BrownNoisePlayer: ObservableObject {
     let session = AVAudioSession.sharedInstance()
     print("UIBackgroundModes: \(modes)")
     print("Audio session category: \(session.category.rawValue), mode: \(session.mode.rawValue)")
+  }
+
+  private func configureRemoteCommandCenter() {
+    let commandCenter = MPRemoteCommandCenter.shared()
+    commandCenter.playCommand.isEnabled = true
+    commandCenter.pauseCommand.isEnabled = true
+    commandCenter.togglePlayPauseCommand.isEnabled = true
+
+    commandCenter.playCommand.addTarget { [weak self] _ in
+      self?.play()
+      return .success
+    }
+
+    commandCenter.pauseCommand.addTarget { [weak self] _ in
+      self?.pause()
+      return .success
+    }
+
+    commandCenter.togglePlayPauseCommand.addTarget { [weak self] _ in
+      self?.togglePlayback()
+      return .success
+    }
+  }
+
+  private func updateNowPlayingInfo() {
+    guard let player = samplePlayer else { return }
+
+    var info: [String: Any] = [
+      MPMediaItemPropertyTitle: "Blanket Brown Noise",
+      MPMediaItemPropertyArtist: "Blanket",
+      MPNowPlayingInfoPropertyIsLiveStream: true,
+      MPNowPlayingInfoPropertyPlaybackRate: isPlaying ? 1.0 : 0.0,
+      MPNowPlayingInfoPropertyElapsedPlaybackTime: player.currentTime
+    ]
+
+    if player.duration.isFinite {
+      info[MPMediaItemPropertyPlaybackDuration] = player.duration
+    }
+
+    MPNowPlayingInfoCenter.default().nowPlayingInfo = info
   }
 }
