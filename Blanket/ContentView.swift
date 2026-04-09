@@ -27,8 +27,8 @@ struct ContentView: View {
               .clear
             ],
             center: .center,
-            startRadius: 30,
-            endRadius: 420
+            startRadius: 24,
+            endRadius: 350
           )
           .scaleEffect(isBreathing ? (player.isPlaying ? 1.06 : 1.01) : 0.96)
           .opacity(isBreathing ? 1.0 : 0.90)
@@ -85,13 +85,14 @@ struct ContentView: View {
               .offset(x: player.isPlaying ? 0 : 4)
           }
         }
-        .frame(width: 232, height: 232)
+        .frame(width: 228, height: 228)
         .scaleEffect((player.isPlaying ? 0.99 : 1.0) * (tapDepth ? 0.965 : 1.0))
         .animation(.spring(response: 0.45, dampingFraction: 0.78), value: player.isPlaying)
         .animation(.spring(response: 0.22, dampingFraction: 0.70), value: tapDepth)
       }
       .buttonStyle(.plain)
       .accessibilityLabel(player.isPlaying ? "Pause" : "Play")
+      .offset(y: -24)
     }
     .preferredColorScheme(.dark)
     .onAppear {
@@ -170,7 +171,7 @@ private struct SoftInnerShadow: ViewModifier {
       }
       .overlay {
         RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-          .stroke(darkShadow.opacity(isPressed ? 0.42 : 0), lineWidth: 7)
+          .stroke(darkShadow.opacity(isPressed ? 0.50 : 0), lineWidth: 7)
           .blur(radius: 5)
           .mask(
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
