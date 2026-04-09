@@ -6,14 +6,65 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		14DF7D042F864C610036C687 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DF7D032F864C610036C687 /* WidgetKit.framework */; };
+		14DF7D062F864C610036C687 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DF7D052F864C610036C687 /* SwiftUI.framework */; };
+		14DF7D172F864C620036C687 /* BlanketWidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 14DF7D012F864C610036C687 /* BlanketWidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		14DF7D152F864C620036C687 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14DF7C8E2F8639130036C687 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14DF7D002F864C610036C687;
+			remoteInfo = BlanketWidgetExtensionExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		14DF7D182F864C620036C687 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				14DF7D172F864C620036C687 /* BlanketWidgetExtensionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		14DF7C962F8639130036C687 /* Blanket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blanket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14DF7D012F864C610036C687 /* BlanketWidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BlanketWidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		14DF7D032F864C610036C687 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		14DF7D052F864C610036C687 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		14DF7D1B2F864C620036C687 /* Exceptions for "BlanketWidgetExtension" folder in "BlanketWidgetExtensionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 14DF7D002F864C610036C687 /* BlanketWidgetExtensionExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		14DF7C982F8639130036C687 /* Blanket */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Blanket;
+			sourceTree = "<group>";
+		};
+		14DF7D072F864C610036C687 /* BlanketWidgetExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				14DF7D1B2F864C620036C687 /* Exceptions for "BlanketWidgetExtension" folder in "BlanketWidgetExtensionExtension" target */,
+			);
+			path = BlanketWidgetExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +77,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		14DF7CFE2F864C610036C687 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14DF7D062F864C610036C687 /* SwiftUI.framework in Frameworks */,
+				14DF7D042F864C610036C687 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				14DF7C982F8639130036C687 /* Blanket */,
+				14DF7D072F864C610036C687 /* BlanketWidgetExtension */,
+				14DF7D022F864C610036C687 /* Frameworks */,
 				14DF7C972F8639130036C687 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +103,18 @@
 			isa = PBXGroup;
 			children = (
 				14DF7C962F8639130036C687 /* Blanket.app */,
+				14DF7D012F864C610036C687 /* BlanketWidgetExtensionExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		14DF7D022F864C610036C687 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				14DF7D032F864C610036C687 /* WidgetKit.framework */,
+				14DF7D052F864C610036C687 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +127,12 @@
 				14DF7C922F8639130036C687 /* Sources */,
 				14DF7C932F8639130036C687 /* Frameworks */,
 				14DF7C942F8639130036C687 /* Resources */,
+				14DF7D182F864C620036C687 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				14DF7D162F864C620036C687 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				14DF7C982F8639130036C687 /* Blanket */,
@@ -69,6 +143,28 @@
 			productName = Blanket;
 			productReference = 14DF7C962F8639130036C687 /* Blanket.app */;
 			productType = "com.apple.product-type.application";
+		};
+		14DF7D002F864C610036C687 /* BlanketWidgetExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14DF7D1C2F864C620036C687 /* Build configuration list for PBXNativeTarget "BlanketWidgetExtensionExtension" */;
+			buildPhases = (
+				14DF7CFD2F864C610036C687 /* Sources */,
+				14DF7CFE2F864C610036C687 /* Frameworks */,
+				14DF7CFF2F864C610036C687 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				14DF7D072F864C610036C687 /* BlanketWidgetExtension */,
+			);
+			name = BlanketWidgetExtensionExtension;
+			packageProductDependencies = (
+			);
+			productName = BlanketWidgetExtensionExtension;
+			productReference = 14DF7D012F864C610036C687 /* BlanketWidgetExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +177,9 @@
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					14DF7C952F8639130036C687 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					14DF7D002F864C610036C687 = {
 						CreatedOnToolsVersion = 26.3;
 					};
 				};
@@ -100,12 +199,20 @@
 			projectRoot = "";
 			targets = (
 				14DF7C952F8639130036C687 /* Blanket */,
+				14DF7D002F864C610036C687 /* BlanketWidgetExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		14DF7C942F8639130036C687 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14DF7CFF2F864C610036C687 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +229,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		14DF7CFD2F864C610036C687 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		14DF7D162F864C620036C687 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14DF7D002F864C610036C687 /* BlanketWidgetExtensionExtension */;
+			targetProxy = 14DF7D152F864C620036C687 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		14DF7C9F2F8639140036C687 /* Debug */ = {
@@ -251,12 +373,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R36CY6WW86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Blanket-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Blanket;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -279,12 +403,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R36CY6WW86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Blanket-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Blanket;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -295,6 +421,66 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		14DF7D192F864C620036C687 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R36CY6WW86;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BlanketWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BlanketWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whidev.Blanket.BlanketWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		14DF7D1A2F864C620036C687 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R36CY6WW86;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BlanketWidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BlanketWidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whidev.Blanket.BlanketWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -319,6 +505,15 @@
 			buildConfigurations = (
 				14DF7CA22F8639140036C687 /* Debug */,
 				14DF7CA32F8639140036C687 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14DF7D1C2F864C620036C687 /* Build configuration list for PBXNativeTarget "BlanketWidgetExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14DF7D192F864C620036C687 /* Debug */,
+				14DF7D1A2F864C620036C687 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -97,6 +97,9 @@ struct ContentView: View {
     .onAppear {
       isBreathing = true
     }
+    .onOpenURL { url in
+      handleWidgetURL(url)
+    }
   }
 
   private func impactFeedback() {
@@ -111,6 +114,13 @@ struct ContentView: View {
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
       tapDepth = false
     }
+  }
+
+  private func handleWidgetURL(_ url: URL) {
+    guard url.scheme == "blanket", url.host == "toggle" else { return }
+    tapDepthAnimation()
+    impactFeedback()
+    player.togglePlayback()
   }
 }
 
